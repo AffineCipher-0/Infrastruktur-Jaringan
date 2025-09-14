@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,312 +7,155 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
         }
-        .section-title {
-            @apply text-2xl font-semibold mb-6 text-indigo-700 border-b-2 border-indigo-200 pb-2;
+        main h2 {
+            font-family: 'Poppins', sans-serif;
+            @apply text-3xl font-bold mb-8 text-slate-800 border-b border-slate-200 pb-4 flex items-center gap-4;
         }
         .card {
-            @apply bg-white p-6 rounded-xl shadow-lg;
+            @apply bg-white p-6 sm:p-8 rounded-2xl shadow-md border border-slate-200;
         }
-        table {
-            @apply min-w-full divide-y divide-gray-200;
+        .code-block {
+            @apply bg-slate-900 rounded-lg shadow-inner overflow-hidden border border-slate-700;
         }
-        thead {
-            @apply bg-gray-50;
-        }
-        th, td {
-            @apply px-6 py-3 text-left text-sm font-medium text-gray-700;
-        }
-        tbody {
-            @apply bg-white divide-y divide-gray-200;
+        .code-header {
+            @apply bg-slate-800 text-xs text-slate-400 py-2 px-4 flex justify-between items-center;
         }
         code {
-            @apply bg-gray-800 text-white p-4 rounded-md block text-sm overflow-x-auto;
+            @apply p-4 block text-sm overflow-x-auto text-slate-200;
         }
-        .image-placeholder {
-            @apply w-full h-auto bg-gray-200 rounded-md border-2 border-dashed border-gray-400 flex items-center justify-center;
+        table {
+            @apply min-w-full;
+        }
+        th {
+            @apply px-6 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider bg-slate-100;
+        }
+        td {
+           @apply px-6 py-4 whitespace-nowrap text-sm text-slate-700 border-b border-slate-200;
+        }
+        tbody tr:last-child td {
+            border-bottom: none;
         }
     </style>
 </head>
-<body class="bg-gray-100 text-gray-800">
+<body class="text-slate-800">
 
-    <div class="container mx-auto p-6 md:p-12">
+    <!-- Floating Navigation -->
+    <nav class="sticky top-0 bg-white/80 backdrop-blur-lg shadow-sm z-50">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0 font-bold text-lg text-indigo-700 font-poppins">PT. AMIKOM Network Project</div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-1">
+                        <a href="#deskripsi" class="px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:bg-indigo-50 hover:text-indigo-700 transition-colors">Deskripsi</a>
+                        <a href="#tim" class="px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:bg-indigo-50 hover:text-indigo-700 transition-colors">Tim</a>
+                        <a href="#desain" class="px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:bg-indigo-50 hover:text-indigo-700 transition-colors">Desain</a>
+                        <a href="#hasil" class="px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:bg-indigo-50 hover:text-indigo-700 transition-colors">Hasil</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto p-4 sm:p-6 md:p-12">
 
         <!-- Header -->
-        <header class="text-center mb-12">
-            <h1 class="text-4xl font-bold text-gray-900">Laporan Teknis Lengkap: Proyek Infrastruktur Jaringan</h1>
-            <p class="text-lg text-gray-600 mt-2">PT. AMIKOM - Laporan Implementasi dan Konfigurasi</p>
+        <header class="text-center py-20 px-6 bg-white rounded-2xl shadow-lg border border-slate-200 mb-12" style="background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);">
+            <h1 class="text-4xl md:text-5xl font-bold text-slate-900 font-poppins">Laporan Teknis Proyek Infrastruktur Jaringan</h1>
+            <p class="text-lg text-slate-600 mt-4 max-w-3xl mx-auto">Dokumentasi lengkap implementasi dan konfigurasi jaringan untuk mendukung operasional PT. AMIKOM.</p>
         </header>
-
-        <!-- 1. Deskripsi Proyek -->
-        <section class="card mb-12">
-            <h2 class="section-title">1. Deskripsi Proyek</h2>
-            <p class="text-gray-700 leading-relaxed">
-                Infrastruktur jaringan yang berfungsi dengan baik dan disesuaikan berdasarkan prioritas adalah bagian vital bagi perusahaan modern. Proyek ini bertujuan merancang dan membangun infrastruktur jaringan di PT. AMIKOM, sebuah perusahaan yang bergerak dalam pembuatan film animasi. Untuk mendukung operasional kantor dan produksi, diperlukan infrastruktur yang solid untuk departemen berikut:
-            </p>
-            <div class="mt-6 flex flex-wrap gap-3">
-                <span class="bg-blue-100 text-blue-800 font-medium px-4 py-2 rounded-full">Manajemen Perkantoran</span>
-                <span class="bg-green-100 text-green-800 font-medium px-4 py-2 rounded-full">Pemasaran</span>
-                <span class="bg-yellow-100 text-yellow-800 font-medium px-4 py-2 rounded-full">Keuangan</span>
-                <span class="bg-purple-100 text-purple-800 font-medium px-4 py-2 rounded-full">Produksi</span>
-                <span class="bg-red-100 text-red-800 font-medium px-4 py-2 rounded-full">Elektrikal</span>
-                <span class="bg-indigo-100 text-indigo-800 font-medium px-4 py-2 rounded-full">Teknologi Informasi</span>
-            </div>
-        </section>
-
-        <!-- 2. Tujuan Proyek -->
-        <section class="card mb-12">
-            <h2 class="section-title">2. Tujuan Proyek</h2>
-            <ul class="list-disc list-inside space-y-2 text-gray-700">
-                <li>Mengetahui kebutuhan yang diperlukan dalam membangun infrastruktur di PT. Amikom.</li>
-                <li>Melaksanakan pembangunan fasilitas dan Infrastruktur pada laboratorium praktikum, ruang UPT, dan ruang server dengan metode Plan, Build, Manage (PBM).</li>
-            </ul>
-        </section>
-
-        <!-- 3. Deskripsi Tugas dan Tanggung Jawab -->
-        <section class="card mb-12">
-            <h2 class="section-title">3. Deskripsi Tugas dan Tanggung Jawab</h2>
-            <div class="my-6 text-center">
-                <img src="https://i.imgur.com/b0m2OrQ.png" alt="Struktur Tim Proyek" class="w-full max-w-3xl mx-auto h-auto rounded-md shadow-md">
-                <p class="text-sm text-gray-500 mt-2">Struktur Organisasi Tim Proyek</p>
-            </div>
-            <div class="overflow-x-auto">
-                <table>
-                    <thead>
-                        <tr><th>Jabatan</th><th>Deskripsi Tugas</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Kepala Project</td><td>Menyediakan kebutuhan proyek, mengkoordinir tim, mengalokasikan anggaran, dan memonitor perkembangan projek.</td></tr>
-                        <tr><td>Operator</td><td>Membangun sebuah Infrastruktur di suatu kelompok, mendesain, implementasi, dan melakukan pemeliharaan agar jaringan tidak mengalami masalah.</td></tr>
-                        <tr><td>Administrator</td><td>Memberikan pengawasan teknis, termasuk perencanaan, implementasi, memelihara dokumentasi, meningkatkan jaringan dan peralatan baru.</td></tr>
-                        <tr><td>Teknisi</td><td>Membangun, memantau dan memperbaiki apabila terdapat masalah di dalam jaringan yang bertugas langsung dilapangan.</td></tr>
-                        <tr><td>Perancang</td><td>Melakukan analisis yang akan dibangun, mendesain topologi jaringan, dan mempersiapkan device.</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <!-- 4. Metodologi Plan, Build, Manage (PBM) -->
-        <section class="card mb-12">
-            <h2 class="section-title">4. Metodologi Plan, Build, Manage (PBM)</h2>
-            <div class="space-y-8">
-                <div>
-                    <h3 class="text-xl font-bold mb-4 text-gray-800">A. Tahap Perencanaan (Plan)</h3>
-                    <div class="space-y-4 ml-4 border-l-4 border-blue-500 pl-4">
-                        <div><h4 class="font-semibold">Strategi dan Analisis:</h4><p class="text-gray-600">Mendefinisikan hubungan antara pengguna, aplikasi, perangkat, dan jaringan. Memahami kebutuhan, masalah, dan solusi untuk sistem yang akan dibangun.</p></div>
-                        <div><h4 class="font-semibold">Penilaian:</h4><p class="text-gray-600">Mengembangkan struktur konseptual jaringan. Menentukan set teknologi, topologi, dan peralatan yang dibutuhkan.</p></div>
-                        <div><h4 class="font-semibold">Desain:</h4><p class="text-gray-600">Memberikan detail fisik untuk arsitektur, termasuk gambar jaringan, pilihan vendor, dan pemilihan peralatan spesifik.</p></div>
-                    </div>
-                </div>
-                <div>
-                    <h3 class="text-xl font-bold mb-4 text-gray-800">B. Tahap Pembangunan (Build)</h3>
-                    <div class="space-y-4 ml-4 border-l-4 border-green-500 pl-4">
-                        <div><h4 class="font-semibold">Validation:</h4><p class="text-gray-600">Memvalidasi desain untuk memastikan semua rangkaian kebutuhan terpenuhi dan dapat mencapai keadaan yang diinginkan.</p></div>
-                        <div><h4 class="font-semibold">Deployment:</h4><p class="text-gray-600">Merangkai jaringan, menggunakan perangkat yang sudah ada untuk meminimalisir biaya, dan memulai pembangunan infrastruktur di ruang-ruang yang ditentukan.</p></div>
-                        <div><h4 class="font-semibold">Migration:</h4><p class="text-gray-600">Menyiapkan data yang akan dimigrasikan ke jaringan baru atau menggabungkan dua jaringan independen menjadi satu.</p></div>
-                    </div>
-                </div>
-                <div>
-                    <h3 class="text-xl font-bold mb-4 text-gray-800">C. Tahap Pengelolaan (Manage)</h3>
-                    <div class="space-y-4 ml-4 border-l-4 border-yellow-500 pl-4">
-                        <div><h4 class="font-semibold">Product Support:</h4><p class="text-gray-600">Menawarkan peralatan jaringan dengan produk dan fitur terbaru.</p></div>
-                        <div><h4 class="font-semibold">Solution Support:</h4><p class="text-gray-600">Menyediakan jaringan yang baik dan mengelola pemecahan masalah dalam jaringan.</p></div>
-                        <div><h4 class="font-semibold">Optimization:</h4><p class="text-gray-600">Melakukan pengamatan dalam pemeliharaan jaringan dan sistem, serta memberikan pelatihan kepada operator.</p></div>
-                        <div><h4 class="font-semibold">Operation Management:</h4><p class="text-gray-600">Memastikan personel memahami teknologi, mendokumentasikan kinerja, dan mengelola monitoring, performa, serta keamanan jaringan.</p></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 5 & 6. Software dan Perangkat -->
-        <section class="card mb-12">
-            <h2 class="section-title">5. Software & Perangkat Teknologi yang Digunakan</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div>
-                    <h3 class="text-xl font-semibold mb-3">Software</h3>
-                    <ul class="list-disc list-inside text-gray-700">
-                        <li>app.diagram.net (draw.io)</li>
-                        <li>Packet Tracer</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-xl font-semibold mb-3">Perangkat Keras</h3>
-                    <ul class="list-disc list-inside text-gray-700 grid grid-cols-2 gap-x-4">
-                        <li>Router</li> <li>Server</li> <li>Switch</li> <li>DSL MODEM</li>
-                        <li>Komputer</li> <li>MCU 1</li> <li>Webcam</li> <li>Motion Sensor</li>
-                        <li>Air Conditioner (AC)</li> <li>Smoke Sensor</li> <li>SmartPhone</li> <li>Laptop</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Desain Jaringan -->
-        <section class="card mb-12">
-            <h2 class="section-title">6. Desain Jaringan</h2>
-            <div class="space-y-6 text-center">
-                 <p class="text-gray-600">Berikut adalah desain topologi logis dan fisik jaringan yang telah diimplementasikan.</p>
-                 <div>
-                    <h3 class="font-semibold mb-2">Desain Logis Jaringan</h3>
-                    <img src="https://i.imgur.com/PY5vvuu.png" alt="Desain Jaringan Logis Hierarkis" class="w-full h-auto rounded-md shadow-md">
-                 </div>
-                 <div>
-                    <h3 class="font-semibold mb-2">Desain di Packet Tracer</h3>
-                    <img src="https://i.imgur.com/gGGYoOO.png" alt="Desain Jaringan di Cisco Packet Tracer" class="w-full h-auto rounded-md shadow-md">
-                 </div>
-            </div>
-        </section>
         
-        <!-- 7. Tabel Network -->
-        <section class="card mb-12">
-            <h2 class="section-title">7. Tabel Network</h2>
-            <div class="overflow-x-auto">
-                <table>
-                    <thead><tr><th>Network</th><th>Interkoneksi Antara</th></tr></thead>
-                    <tbody>
-                        <tr><td>Network 1</td><td>Server www.pj.com to Cloud</td></tr>
-                        <tr><td>Network 2</td><td>Cloud to Dsl Modem</td></tr>
-                        <tr><td>Network 3</td><td>Dsl Modem to ISP</td></tr>
-                        <tr><td>Network 4</td><td>ISP to Teleworker VPN User</td></tr>
-                        <tr><td>Network 5</td><td>ISP to Edge Core</td></tr>
-                        <tr><td>Network 6</td><td>Edge Core to Distribution</td></tr>
-                        <tr><td>Network 7</td><td>Distribution to Access</td></tr>
-                        <tr><td>Network 8 Vlans</td><td>9 Vlan to Inter Vlan</td></tr>
-                    </tbody>
-                </table>
+        <!-- Project at a Glance -->
+        <section class="mb-12" id="glance">
+             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-2xl border-2 border-slate-200 flex items-center gap-4 hover:border-indigo-300 hover:shadow-lg transition-all">
+                    <i data-lucide="user-circle" class="w-10 h-10 text-indigo-600"></i>
+                    <div>
+                        <p class="text-sm text-slate-500 font-semibold">Kepala Proyek</p>
+                        <p class="text-lg font-bold text-slate-900">Gatot Sasangka</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border-2 border-slate-200 flex items-center gap-4 hover:border-green-300 hover:shadow-lg transition-all">
+                    <i data-lucide="building-2" class="w-10 h-10 text-green-600"></i>
+                    <div>
+                        <p class="text-sm text-slate-500 font-semibold">Departemen Terlayani</p>
+                        <p class="text-lg font-bold text-slate-900">6 Departemen</p>
+                    </div>
+                </div>
+                 <div class="bg-white p-6 rounded-2xl border-2 border-slate-200 flex items-center gap-4 hover:border-yellow-400 hover:shadow-lg transition-all">
+                    <i data-lucide="shield-check" class="w-10 h-10 text-yellow-600"></i>
+                    <div>
+                        <p class="text-sm text-slate-500 font-semibold">Teknologi Utama</p>
+                        <p class="text-lg font-bold text-slate-900">VLAN, VPN, Routing</p>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- 8. IP Table -->
-        <section class="card mb-12">
-            <h2 class="section-title">8. Tabel Pengalamatan IP</h2>
-            <div class="overflow-x-auto">
-                <table>
-                    <thead>
-                        <tr><th>Jenis Perangkat</th><th>Nama Perangkat</th><th>Interface</th><th>IP Address</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Server</td><td>www.pj.com</td><td>FastEthernet 0</td><td>10.0.128.2/24</td></tr>
-                        <tr><td>Router</td><td>ISP</td><td>GigabitEthernet 0/0</td><td>10.0.64.1/24</td></tr>
-                        <tr><td>Router</td><td>ISP</td><td>GigabitEthernet 0/1</td><td>10.0.0.1/24</td></tr>
-                        <tr><td>Router</td><td>ISP</td><td>GigabitEthernet 0/2</td><td>10.0.128.1/24</td></tr>
-                        <tr><td>PC-PT</td><td>Teleworker VPN</td><td>Fast Ethernet 0</td><td>10.0.64.2/24</td></tr>
-                        <tr><td>Switch</td><td>Switch3 (VLAN)</td><td>Vlan 70</td><td>10.0.0.11/24</td></tr>
-                        <tr><td>Switch</td><td>Switch5 (VLAN)</td><td>Vlan 10</td><td>10.0.0.2/24</td></tr>
-                        <tr><td>Switch</td><td>Switch 6 (VLAN)</td><td>Vlan 20</td><td>10.0.0.3/24</td></tr>
-                        <tr><td>Switch</td><td>Switch 7 (VLAN)</td><td>Vlan 30</td><td>10.0.0.4/24</td></tr>
-                        <tr><td>Switch</td><td>Switch8 (VLAN)</td><td>Vlan 40</td><td>10.0.0.5/24</td></tr>
-                        <tr><td>Switch</td><td>Switch9 (VLAN)</td><td>Vlan 50</td><td>10.0.0.6/24</td></tr>
-                        <tr><td>Switch</td><td>Switch10 (VLAN)</td><td>Vlan 60</td><td>10.0.0.7/24</td></tr>
-                        <tr><td>Switch</td><td>Switch11 (VLAN)</td><td>Vlan 80</td><td>10.0.0.8/24</td></tr>
-                        <tr><td>Switch</td><td>Switch12 (VLAN)</td><td>Vlan 90</td><td>10.0.0.9/24</td></tr>
-                        <tr><td>Host</td><td>PC-Dept_ManPer</td><td>FastEthernet 0</td><td>10.0.0.10/24</td></tr>
-                        <tr><td>Host</td><td>PC-Dept_Pemasaran</td><td>FastEthernet 0</td><td>10.0.0.20/24</td></tr>
-                        <tr><td>Host</td><td>PC-Dept_Keuangan</td><td>FastEthernet 0</td><td>10.0.0.30/24</td></tr>
-                        <tr><td>Host</td><td>PC-Dept_Produksi</td><td>FastEthernet 0</td><td>10.0.0.40/24</td></tr>
-                        <tr><td>Host</td><td>PC-Dept_Elektrika</td><td>FastEthernet 0</td><td>10.0.0.50/24</td></tr>
-                        <tr><td>Host</td><td>PC_Dept_TI</td><td>FastEthernet 0</td><td>10.0.0.60/24</td></tr>
-                        <tr><td>Host</td><td>Server Apps</td><td>FastEthernet 0</td><td>10.0.0.70/24</td></tr>
-                        <tr><td>Host</td><td>Server Storage</td><td>FastEthernet 0</td><td>10.0.0.80/24</td></tr>
-                        <tr><td>Host</td><td>Renderfarm</td><td>FastEthernet 0</td><td>10.0.0.90/24</td></tr>
-                        <!-- Semua switch lain yang "Port Channel Active" tidak ditampilkan untuk keringkasan -->
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <!-- 9. IP Protocol -->
-        <section class="card mb-12">
-            <h2 class="section-title">9. Tabel IP Protocol</h2>
-            <div class="overflow-x-auto">
-                <table>
-                    <thead><tr><th>Jenis Perangkat</th><th>Nama Perangkat</th><th>Protocol</th></tr></thead>
-                    <tbody>
-                        <tr><td>Router</td><td>ISP</td><td>Default Route, Static Route</td></tr>
-                        <tr><td>Switch</td><td>Edge Core</td><td>Default Route, Static Route</td></tr>
-                        <tr><td>Switch</td><td>Distribution Layer</td><td>Default Route, Static Route</td></tr>
-                        <tr><td>Switch</td><td>Access</td><td>Default Route, Static Route</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <!-- 10. Konfigurasi Dasar -->
-        <section class="card mb-12">
-            <h2 class="section-title">10. Konfigurasi Dasar Packet Tracer</h2>
-            <div class="space-y-6">
-                <div><h3 class="font-semibold text-lg mb-2">a. ISP Router</h3><code>Router(config)#interface GigabitEthernet0/0
+        <div class="space-y-12">
+            <section id="deskripsi"><i data-lucide="file-text" class="w-8 h-8 text-indigo-600"></i><h2>Deskripsi Proyek</h2><div class="card"><p class="text-slate-600 leading-relaxed mb-6">Infrastruktur jaringan yang berfungsi dengan baik dan disesuaikan berdasarkan prioritas adalah bagian vital bagi perusahaan modern. Proyek ini bertujuan merancang dan membangun infrastruktur jaringan di PT. AMIKOM, sebuah perusahaan yang bergerak dalam pembuatan film animasi. Untuk mendukung operasional kantor dan produksi, diperlukan infrastruktur yang solid untuk departemen berikut:</p><div class="mt-6 flex flex-wrap gap-3"><span class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full">Manajemen Perkantoran</span><span class="bg-green-100 text-green-800 text-sm font-medium px-4 py-2 rounded-full">Pemasaran</span><span class="bg-yellow-100 text-yellow-800 text-sm font-medium px-4 py-2 rounded-full">Keuangan</span><span class="bg-purple-100 text-purple-800 text-sm font-medium px-4 py-2 rounded-full">Produksi</span><span class="bg-red-100 text-red-800 text-sm font-medium px-4 py-2 rounded-full">Elektrikal</span><span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-4 py-2 rounded-full">Teknologi Informasi</span></div></div></section>
+            <section id="tujuan"><i data-lucide="target" class="w-8 h-8 text-indigo-600"></i><h2>Tujuan Proyek</h2><div class="card"><ul class="list-none space-y-4 text-slate-600"><li class="flex items-start gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-green-500 mt-1 flex-shrink-0"></i><span>Mengetahui kebutuhan yang diperlukan dalam membangun infrastruktur di PT. Amikom.</span></li><li class="flex items-start gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-green-500 mt-1 flex-shrink-0"></i><span>Melaksanakan pembangunan fasilitas dan Infrastruktur pada laboratorium praktikum, ruang UPT, dan ruang server dengan metode Plan, Build, Manage (PBM).</span></li></ul></div></section>
+            <section id="tim"><i data-lucide="users-2" class="w-8 h-8 text-indigo-600"></i><h2>Tim & Tanggung Jawab</h2><div class="card"><div class="my-6 text-center"><img src="https://i.imgur.com/b0m2OrQ.png" alt="Struktur Tim Proyek" class="w-full max-w-3xl mx-auto h-auto rounded-lg shadow-md border"><p class="text-sm text-slate-500 mt-2">Struktur Organisasi Tim Proyek</p></div><div class="overflow-x-auto rounded-lg border border-slate-200"><table class="min-w-full"><thead><tr><th>Jabatan</th><th>Deskripsi Tugas</th></tr></thead><tbody class="bg-white"><tr><td class="font-semibold">Kepala Project</td><td>Menyediakan kebutuhan proyek, mengkoordinir tim, mengalokasikan anggaran, dan memonitor perkembangan projek.</td></tr><tr><td class="font-semibold">Operator</td><td>Membangun sebuah Infrastruktur di suatu kelompok, mendesain, implementasi, dan melakukan pemeliharaan agar jaringan tidak mengalami masalah.</td></tr><tr><td class="font-semibold">Administrator</td><td>Memberikan pengawasan teknis, termasuk perencanaan, implementasi, memelihara dokumentasi, meningkatkan jaringan dan peralatan baru.</td></tr><tr><td class="font-semibold">Teknisi</td><td>Membangun, memantau dan memperbaiki apabila terdapat masalah di dalam jaringan yang bertugas langsung dilapangan.</td></tr><tr><td class="font-semibold">Perancang</td><td>Melakukan analisis yang akan dibangun, mendesain topologi jaringan, dan mempersiapkan device.</td></tr></tbody></table></div></div></section>
+            <section id="metodologi"><i data-lucide="workflow" class="w-8 h-8 text-indigo-600"></i><h2>Metodologi PBM</h2><div class="card space-y-8"><div><h3 class="flex items-center gap-3 text-xl font-bold mb-4 text-slate-800"><span class="flex items-center justify-center w-8 h-8 bg-blue-100 text-blue-700 rounded-full font-bold">1</span> Tahap Perencanaan (Plan)</h3><div class="space-y-4 ml-4 border-l-2 border-blue-300 pl-8"><div><h4 class="font-semibold">Strategi dan Analisis:</h4><p class="text-slate-600">Mendefinisikan hubungan antara pengguna, aplikasi, perangkat, dan jaringan. Memahami kebutuhan, masalah, dan solusi untuk sistem yang akan dibangun.</p></div><div><h4 class="font-semibold">Penilaian:</h4><p class="text-slate-600">Mengembangkan struktur konseptual jaringan. Menentukan set teknologi, topologi, dan peralatan yang dibutuhkan.</p></div><div><h4 class="font-semibold">Desain:</h4><p class="text-slate-600">Memberikan detail fisik untuk arsitektur, termasuk gambar jaringan, pilihan vendor, dan pemilihan peralatan spesifik.</p></div></div></div><div><h3 class="flex items-center gap-3 text-xl font-bold mb-4 text-slate-800"><span class="flex items-center justify-center w-8 h-8 bg-green-100 text-green-700 rounded-full font-bold">2</span> Tahap Pembangunan (Build)</h3><div class="space-y-4 ml-4 border-l-2 border-green-300 pl-8"><div><h4 class="font-semibold">Validation:</h4><p class="text-slate-600">Memvalidasi desain untuk memastikan semua rangkaian kebutuhan terpenuhi dan dapat mencapai keadaan yang diinginkan.</p></div><div><h4 class="font-semibold">Deployment:</h4><p class="text-slate-600">Merangkai jaringan, menggunakan perangkat yang sudah ada untuk meminimalisir biaya, dan memulai pembangunan infrastruktur di ruang-ruang yang ditentukan.</p></div><div><h4 class="font-semibold">Migration:</h4><p class="text-slate-600">Menyiapkan data yang akan dimigrasikan ke jaringan baru atau menggabungkan dua jaringan independen menjadi satu.</p></div></div></div><div><h3 class="flex items-center gap-3 text-xl font-bold mb-4 text-slate-800"><span class="flex items-center justify-center w-8 h-8 bg-yellow-100 text-yellow-700 rounded-full font-bold">3</span> Tahap Pengelolaan (Manage)</h3><div class="space-y-4 ml-4 border-l-2 border-yellow-300 pl-8"><div><h4 class="font-semibold">Product Support:</h4><p class="text-slate-600">Menawarkan peralatan jaringan dengan produk dan fitur terbaru.</p></div><div><h4 class="font-semibold">Solution Support:</h4><p class="text-slate-600">Menyediakan jaringan yang baik dan mengelola pemecahan masalah dalam jaringan.</p></div><div><h4 class="font-semibold">Optimization:</h4><p class="text-slate-600">Melakukan pengamatan dalam pemeliharaan jaringan dan sistem, serta memberikan pelatihan kepada operator.</p></div><div><h4 class="font-semibold">Operation Management:</h4><p class="text-slate-600">Memastikan personel memahami teknologi, mendokumentasikan kinerja, dan mengelola monitoring, performa, serta keamanan jaringan.</p></div></div></div></div></section>
+            <section id="tools"><i data-lucide="cpu" class="w-8 h-8 text-indigo-600"></i><h2>Software & Perangkat</h2><div class="card grid md:grid-cols-2 gap-8"><div><h3 class="text-xl font-semibold mb-4 text-slate-800">Software</h3><ul class="list-none space-y-3"><li class="flex items-center gap-3"><i data-lucide="box" class="w-5 h-5 text-indigo-500"></i>app.diagram.net (draw.io)</li><li class="flex items-center gap-3"><i data-lucide="box" class="w-5 h-5 text-indigo-500"></i>Packet Tracer</li></ul></div><div><h3 class="text-xl font-semibold mb-4 text-slate-800">Perangkat Keras</h3><ul class="list-none grid grid-cols-2 gap-3 text-slate-600"><li class="flex items-center gap-3"><i data-lucide="server" class="w-4 h-4"></i>Router</li><li class="flex items-center gap-3"><i data-lucide="database" class="w-4 h-4"></i>Server</li><li class="flex items-center gap-3"><i data-lucide="switch-camera" class="w-4 h-4"></i>Switch</li><li class="flex items-center gap-3"><i data-lucide="modem-tower" class="w-4 h-4"></i>DSL MODEM</li><li class="flex items-center gap-3"><i data-lucide="monitor" class="w-4 h-4"></i>Komputer</li><li class="flex items-center gap-3"><i data-lucide="video" class="w-4 h-4"></i>Webcam</li><li class="flex items-center gap-3"><i data-lucide="siren" class="w-4 h-4"></i>Smoke Sensor</li><li class="flex items-center gap-3"><i data-lucide="smartphone" class="w-4 h-4"></i>SmartPhone</li><li class="flex items-center gap-3"><i data-lucide="laptop" class="w-4 h-4"></i>Laptop</li></ul></div></div></section>
+            <section id="desain"><i data-lucide="network" class="w-8 h-8 text-indigo-600"></i><h2>Desain Jaringan</h2><div class="card space-y-8 text-center"><p class="text-slate-600 max-w-2xl mx-auto">Berikut adalah desain topologi logis dan fisik jaringan yang telah diimplementasikan, menunjukkan arsitektur hierarkis dari Core hingga Access layer.</p><div class="bg-slate-50 p-4 rounded-xl border"><h3 class="font-semibold mb-3 text-slate-800">Desain Logis Jaringan</h3><img src="https://i.imgur.com/PY5vvuu.png" alt="Desain Jaringan Logis Hierarkis" class="w-full h-auto rounded-lg shadow-md"></div><div class="bg-slate-50 p-4 rounded-xl border"><h3 class="font-semibold mb-3 text-slate-800">Implementasi di Packet Tracer</h3><img src="https://i.imgur.com/gGGYoOO.png" alt="Desain Jaringan di Cisco Packet Tracer" class="w-full h-auto rounded-lg shadow-md"></div></div></section>
+            <section id="ip-table"><i data-lucide="at-sign" class="w-8 h-8 text-indigo-600"></i><h2>Tabel Pengalamatan IP</h2><div class="card"><div class="overflow-x-auto rounded-lg border border-slate-200"><table><thead><tr><th>Jenis</th><th>Nama Perangkat</th><th>Interface</th><th>IP Address</th></tr></thead><tbody class="bg-white"><tr><td>Server</td><td>www.pj.com</td><td>FastEthernet 0</td><td>10.0.128.2/24</td></tr><tr><td>Router</td><td>ISP</td><td>GigabitEthernet 0/0</td><td>10.0.64.1/24</td></tr><tr><td>PC-PT</td><td>Teleworker VPN</td><td>Fast Ethernet 0</td><td>10.0.64.2/24</td></tr><tr><td>Switch</td><td>Switch3 (WiFi)</td><td>Vlan 70</td><td>10.0.0.11/24</td></tr><tr><td>Switch</td><td>Switch5 (ManPer)</td><td>Vlan 10</td><td>10.0.0.2/24</td></tr><tr><td>Switch</td><td>Switch6 (Pemasaran)</td><td>Vlan 20</td><td>10.0.0.3/24</td></tr><tr><td>Host</td><td>PC-Dept_ManPer</td><td>FastEthernet 0</td><td>10.0.0.10/24</td></tr><tr><td>Host</td><td>PC-Dept_Pemasaran</td><td>FastEthernet 0</td><td>10.0.0.20/24</td></tr><tr><td>Host</td><td>PC-Dept_Keuangan</td><td>FastEthernet 0</td><td>10.0.0.30/24</td></tr><tr><td>Host</td><td>PC-Dept_Produksi</td><td>FastEthernet 0</td><td>10.0.0.40/24</td></tr><tr><td>Host</td><td>PC-Dept_Elektrika</td><td>FastEthernet 0</td><td>10.0.0.50/24</td></tr><tr><td>Host</td><td>PC_Dept_TI</td><td>FastEthernet 0</td><td>10.0.0.60/24</td></tr><tr><td>Host</td><td>Server Apps</td><td>FastEthernet 0</td><td>10.0.0.70/24</td></tr><tr><td>Host</td><td>Server Storage</td><td>FastEthernet 0</td><td>10.0.0.80/24</td></tr><tr><td>Host</td><td>Renderfarm</td><td>FastEthernet 0</td><td>10.0.0.90/24</td></tr></tbody></table></div></div></section>
+            <section id="konfigurasi"><i data-lucide="terminal" class="w-8 h-8 text-indigo-600"></i><h2>Konfigurasi Dasar</h2><div class="card grid grid-cols-1 lg:grid-cols-2 gap-6"><div class="code-block"><div class="code-header"><span>a. ISP Router</span><button class="copy-btn flex items-center gap-1.5 hover:text-white"><i data-lucide="copy" class="w-3.5 h-3.5"></i><span class="btn-text">Salin</span></button></div><code>Router(config)#interface GigabitEthernet0/0
 Router(config-if)#ip address 10.0.64.1 255.255.255.0
 Router(config-if)#interface GigabitEthernet0/1
 Router(config-if)#ip address 10.0.0.1 255.255.255.0
-Router(config-if)#interface GigabitEthernet0/2
-Router(config-if)#ip address 10.0.128.1 255.255.255.0</code></div>
-                <div><h3 class="font-semibold text-lg mb-2">b. Edge Core Switch (VLAN & Trunk)</h3><code>Switch(config)#vlan 10
+...
+</code></div><div class="code-block"><div class="code-header"><span>b. Edge Core Switch (VLAN & Trunk)</span><button class="copy-btn flex items-center gap-1.5 hover:text-white"><i data-lucide="copy" class="w-3.5 h-3.5"></i><span class="btn-text">Salin</span></button></div><code>Switch(config)#vlan 10
 Switch(config-vlan)# name Dept_ManPer
-Switch(config)#vlan 20
-Switch(config-vlan)# name Dept_Pemasaran
-... (vlan 30, 40, 50, 60, 70, 80, 90) ...
+... (vlan 20, 30, ... 90) ...
 Switch(config)#interface GigabitEthernet1/0/2
 Switch(config-if)#switchport mode trunk
-Switch(config)#interface GigabitEthernet1/0/3
-Switch(config-if)#switchport mode trunk</code></div>
-                <div><h3 class="font-semibold text-lg mb-2">c. Distribution Layer Switch (Trunk)</h3><code>Switch(config)#interface GigabitEthernet1/0/1-3
-Switch(config-if)#switchport mode trunk</code></div>
-                <div><h3 class="font-semibold text-lg mb-2">d. Access Switch (IP VLAN per Departemen)</h3><code>Switch(config)#vlan 10
-Switch(config-vlan)# name Dept_ManPer
-Switch(config)#interface vlan 10
+...
+</code></div><div class="code-block"><div class="code-header"><span>c. Distribution Layer Switch (Trunk)</span><button class="copy-btn flex items-center gap-1.5 hover:text-white"><i data-lucide="copy" class="w-3.5 h-3.5"></i><span class="btn-text">Salin</span></button></div><code>Switch(config)#interface range Gi1/0/1-3
+Switch(config-if-range)#switchport mode trunk
+</code></div><div class="code-block"><div class="code-header"><span>d. Access Switch (VLAN Interface)</span><button class="copy-btn flex items-center gap-1.5 hover:text-white"><i data-lucide="copy" class="w-3.5 h-3.5"></i><span class="btn-text">Salin</span></button></div><code>Switch(config)#interface vlan 10
 Switch(config-if)#ip address 10.0.0.2 255.255.255.0
-... (konfigurasi IP untuk vlan 20, 30, dst.) ...</code></div>
-            </div>
-        </section>
-
-        <!-- 11. Hasil Pengujian -->
-        <section class="card mb-12">
-            <h2 class="section-title">11. Hasil Pengujian (Screenshot)</h2>
-            <div class="space-y-8">
-                <div>
-                    <h3 class="font-semibold text-lg">a. Konektivitas antar departemen (antar VLAN)</h3>
-                    <p class="text-gray-600 mb-4">Pengujian `ping` dari PC Dept_ManPer ke PC di departemen lain.</p>
-                    <img src="https://i.imgur.com/mBpFH5s.png" alt="Hasil Ping antar Departemen" class="w-full h-auto rounded-md shadow-md">
-                </div>
-                <div>
-                    <h3 class="font-semibold text-lg">b. Akses dari departemen ke ServerFarm</h3>
-                    <p class="text-gray-600 mb-4">Pengujian `ping` dari PC di berbagai departemen ke Server Storage, Server Apps, dan Renderfarm.</p>
-                     <img src="https://i.imgur.com/398G8bp.png" alt="Hasil Ping dari Departemen ke ServerFarm" class="w-full h-auto rounded-md shadow-md">
-                </div>
-                <div>
-                    <h3 class="font-semibold text-lg">c. Akses ke Web Server (pj.com)</h3>
-                    <p class="text-gray-600 mb-4">Pengujian `ping` dan akses melalui Web Browser dari PC departemen ke server www.pj.com.</p>
-                     <img src="https://i.imgur.com/51M7a1v.png" alt="Hasil Akses ke Web Server" class="w-full h-auto rounded-md shadow-md">
-                </div>
-                <div>
-                    <h3 class="font-semibold text-lg">d. Konektivitas WiFi</h3>
-                    <p class="text-gray-600 mb-4">Pengujian koneksi SmartPhone ke jaringan WiFi dan melakukan `ping` ke PC departemen dan server.</p>
-                     <img src="https://i.imgur.com/jBze512.png" alt="Hasil Koneksi via WiFi" class="w-full h-auto rounded-md shadow-md">
-                </div>
-                <div>
-                    <h3 class="font-semibold text-lg">e. Koneksi VPN Teleworker</h3>
-                     <p class="text-gray-600 mb-4">Pengujian koneksi VPN oleh Teleworker dan akses ke Server Storage.</p>
-                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <img src="https://i.imgur.com/0bcP0sX.png" alt="Konfirmasi Koneksi VPN Berhasil" class="w-full h-auto rounded-md shadow-md">
-                        <img src="https://i.imgur.com/lqqKYFK.png" alt="Hasil Ping dari VPN ke Server Storage" class="w-full h-auto rounded-md shadow-md">
-                     </div>
-                </div>
-            </div>
-        </section>
-
-
+... (IP untuk vlan 20, 30, dst.) ...
+</code></div></div></section>
+            <section id="hasil"><i data-lucide="check-check" class="w-8 h-8 text-indigo-600"></i><h2>Hasil Pengujian</h2><div class="card space-y-8"><div class="p-6 border rounded-xl bg-slate-50/80"><h3 class="font-semibold text-lg text-slate-800">a. Konektivitas Antar Departemen (VLAN)</h3><p class="text-slate-600 mb-4 text-sm">Pengujian `ping` dari PC Dept_ManPer ke PC di departemen lain berhasil, membuktikan routing antar-VLAN berfungsi.</p><img src="https://i.imgur.com/mBpFH5s.png" alt="Hasil Ping antar Departemen" class="w-full h-auto rounded-lg shadow-md border"></div><div class="p-6 border rounded-xl bg-slate-50/80"><h3 class="font-semibold text-lg text-slate-800">b. Akses ke ServerFarm</h3><p class="text-slate-600 mb-4 text-sm">Pengujian `ping` dari PC departemen ke Server Storage, Apps, dan Renderfarm menunjukkan konektivitas ke sumber daya internal berhasil.</p><img src="https://i.imgur.com/398G8bp.png" alt="Hasil Ping dari Departemen ke ServerFarm" class="w-full h-auto rounded-lg shadow-md border"></div><div class="p-6 border rounded-xl bg-slate-50/80"><h3 class="font-semibold text-lg text-slate-800">c. Akses ke Web Server Eksternal (pj.com)</h3><p class="text-slate-600 mb-4 text-sm">Akses melalui Web Browser dari PC departemen ke server www.pj.com berhasil, menandakan koneksi internet dan routing eksternal berjalan baik.</p><img src="https://i.imgur.com/51M7a1v.png" alt="Hasil Akses ke Web Server" class="w-full h-auto rounded-lg shadow-md border"></div><div class="p-6 border rounded-xl bg-slate-50/80"><h3 class="font-semibold text-lg text-slate-800">d. Konektivitas WiFi</h3><p class="text-slate-600 mb-4 text-sm">Smartphone berhasil terhubung ke WiFi, mendapatkan IP, dan melakukan `ping` ke PC departemen, menunjukkan Vlan WiFi terintegrasi dengan benar.</p><img src="https://i.imgur.com/jBze512.png" alt="Hasil Koneksi via WiFi" class="w-full h-auto rounded-lg shadow-md border"></div><div class="p-6 border rounded-xl bg-slate-50/80"><h3 class="font-semibold text-lg text-slate-800">e. Koneksi VPN Teleworker</h3><p class="text-slate-600 mb-4 text-sm">Pengguna jarak jauh (Teleworker) berhasil membangun koneksi VPN dan mengakses Server Storage, memastikan akses remote yang aman.</p><div class="grid grid-cols-1 md:grid-cols-2 gap-4"><img src="https://i.imgur.com/0bcP0sX.png" alt="Konfirmasi Koneksi VPN Berhasil" class="w-full h-auto rounded-lg shadow-md border"><img src="https://i.imgur.com/lqqKYFK.png" alt="Hasil Ping dari VPN ke Server Storage" class="w-full h-auto rounded-lg shadow-md border"></div></div></div></section>
+        </div>
+        
         <!-- Footer -->
-        <footer class="text-center mt-12 text-gray-500">
-            <p>Dokumen Proyek Asli oleh: Gatot Sasangka (19.11.2879) - 2022</p>
-            <p>Divisualisasikan sebagai Laporan Web Teknis.</p>
+        <footer class="text-center mt-16 py-8 border-t border-slate-200 text-slate-500">
+            <p class="font-semibold">Dokumen Proyek Asli oleh: Gatot Sasangka (19.11.2879) - 2022</p>
+            <p class="text-sm">Divisualisasikan sebagai Laporan Web Teknis Interaktif.</p>
         </footer>
 
-    </div>
+    </main>
+    
+    <script>
+        lucide.createIcons();
 
+        // --- Copy to Clipboard for Code Blocks ---
+        document.querySelectorAll('.copy-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const code = button.closest('.code-block').querySelector('code').innerText;
+                navigator.clipboard.writeText(code).then(() => {
+                    const btnText = button.querySelector('.btn-text');
+                    const icon = button.querySelector('i');
+                    btnText.textContent = 'Tersalin!';
+                    icon.setAttribute('data-lucide', 'check');
+                    lucide.createIcons();
+                    setTimeout(() => {
+                        btnText.textContent = 'Salin';
+                        icon.setAttribute('data-lucide', 'copy');
+                        lucide.createIcons();
+                    }, 2000);
+                });
+            });
+        });
+    </script>
 </body>
 </html>
 
