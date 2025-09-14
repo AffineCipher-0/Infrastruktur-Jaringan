@@ -4,22 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Laporan Teknis Proyek Infrastruktur Jaringan - PT. AMIKOM</title>
+    
+    <!-- Tailwind CSS & Google Fonts -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom Styles -->
     <style>
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f8fafc; /* slate-50 */
+            background-image: radial-gradient(#dbeafe 0.5px, transparent 0.5px);
+            background-size: 15px 15px;
         }
         main h2 {
             font-family: 'Poppins', sans-serif;
             @apply text-3xl font-bold mb-8 text-slate-800 border-b border-slate-200 pb-4 flex items-center gap-4;
         }
         .card {
-            @apply bg-white p-6 sm:p-8 rounded-2xl shadow-md border border-slate-200;
+            @apply bg-white p-6 sm:p-8 rounded-2xl shadow-md border border-slate-200 transition-shadow duration-300 hover:shadow-xl;
         }
         .code-block {
             @apply bg-slate-900 rounded-lg shadow-inner overflow-hidden border border-slate-700;
@@ -42,7 +50,8 @@
         tbody tr:last-child td {
             border-bottom: none;
         }
-        /* -- Custom Styles for Enhancements -- */
+        
+        /* -- Komponen Kustom & Gaya Animasi -- */
         .nav-active {
             @apply bg-indigo-100 text-indigo-700 font-semibold;
         }
@@ -56,19 +65,32 @@
             transform: translateY(0);
         }
         .enlargeable-image {
-            @apply cursor-zoom-in;
+            @apply cursor-zoom-in transition-transform duration-300 hover:scale-105;
+        }
+        
+        /* Animasi untuk Modal Gambar */
+        #imageModal {
+            transition: opacity 0.3s ease-in-out;
+        }
+        #modalImage {
+            transition: transform 0.3s ease-in-out;
+        }
+        #imageModal.hidden #modalImage {
+            transform: scale(0.95);
         }
     </style>
 </head>
 <body class="text-slate-800">
 
-    <!-- Floating Navigation -->
+    <!-- =================================================================
+    Bilah Navigasi (Sticky)
+    ================================================================== -->
     <nav class="sticky top-0 bg-white/80 backdrop-blur-lg shadow-sm z-50">
         <div class="container mx-auto px-6">
             <div class="flex justify-between items-center h-16">
-                <div class="flex-shrink-0 font-bold text-lg text-indigo-700 font-poppins">PT. AMIKOM Network Project</div>
+                <div class="flex-shrink-0 font-bold text-lg text-indigo-700 font-poppins">Proyek Jaringan PT. AMIKOM</div>
                 <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-1">
+                    <div id="nav-links" class="ml-10 flex items-baseline space-x-1">
                         <a href="#deskripsi" class="px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:bg-indigo-50 hover:text-indigo-700 transition-colors">Deskripsi</a>
                         <a href="#tim" class="px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:bg-indigo-50 hover:text-indigo-700 transition-colors">Tim</a>
                         <a href="#desain" class="px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:bg-indigo-50 hover:text-indigo-700 transition-colors">Desain</a>
@@ -79,42 +101,47 @@
         </div>
     </nav>
 
+    <!-- =================================================================
+    Area Konten Utama
+    ================================================================== -->
     <main class="container mx-auto p-4 sm:p-6 md:p-12">
 
-        <!-- Header -->
+        <!-- Header Halaman -->
         <header class="text-center py-20 px-6 bg-white rounded-2xl shadow-lg border border-slate-200 mb-12" style="background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);">
-            <h1 class="text-4xl md:text-5xl font-bold text-slate-900 font-poppins">Laporan Teknis Proyek Infrastruktur Jaringan</h1>
+            <h1 class="text-4xl md:text-5xl font-bold text-slate-900 font-poppins drop-shadow-sm">Laporan Teknis Proyek Infrastruktur Jaringan</h1>
             <p class="text-lg text-slate-600 mt-4 max-w-3xl mx-auto">Dokumentasi lengkap implementasi dan konfigurasi jaringan untuk mendukung operasional PT. AMIKOM.</p>
         </header>
         
-        <!-- Project at a Glance -->
+        <!-- Sekilas Proyek -->
         <section class="mb-12" id="glance">
              <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                 <div class="bg-white p-6 rounded-2xl border-2 border-slate-200 flex items-center gap-4 hover:border-indigo-300 hover:shadow-lg transition-all">
-                     <i data-lucide="user-circle" class="w-10 h-10 text-indigo-600"></i>
-                     <div>
-                         <p class="text-sm text-slate-500 font-semibold">Manajer Proyek</p>
-                         <p class="text-lg font-bold text-slate-900">Gatot Sasangka</p>
-                     </div>
-                 </div>
-                 <div class="bg-white p-6 rounded-2xl border-2 border-slate-200 flex items-center gap-4 hover:border-green-300 hover:shadow-lg transition-all">
-                     <i data-lucide="building-2" class="w-10 h-10 text-green-600"></i>
-                     <div>
-                         <p class="text-sm text-slate-500 font-semibold">Departemen Terlayani</p>
-                         <p class="text-lg font-bold text-slate-900">6 Departemen</p>
-                     </div>
-                 </div>
-                  <div class="bg-white p-6 rounded-2xl border-2 border-slate-200 flex items-center gap-4 hover:border-yellow-400 hover:shadow-lg transition-all">
-                     <i data-lucide="shield-check" class="w-10 h-10 text-yellow-600"></i>
-                     <div>
-                         <p class="text-sm text-slate-500 font-semibold">Teknologi Utama</p>
-                         <p class="text-lg font-bold text-slate-900">VLAN, VPN, Routing</p>
-                     </div>
-                 </div>
+                   <div class="bg-white p-6 rounded-2xl border-2 border-slate-200 flex items-center gap-4 transition-all duration-300 hover:border-indigo-300 hover:shadow-lg hover:-translate-y-1">
+                       <i data-lucide="user-circle" class="w-10 h-10 text-indigo-600"></i>
+                       <div>
+                           <p class="text-sm text-slate-500 font-semibold">Manajer Proyek</p>
+                           <p class="text-lg font-bold text-slate-900">Gatot Sasangka</p>
+                       </div>
+                   </div>
+                   <div class="bg-white p-6 rounded-2xl border-2 border-slate-200 flex items-center gap-4 transition-all duration-300 hover:border-green-300 hover:shadow-lg hover:-translate-y-1">
+                       <i data-lucide="building-2" class="w-10 h-10 text-green-600"></i>
+                       <div>
+                           <p class="text-sm text-slate-500 font-semibold">Departemen Terlayani</p>
+                           <p class="text-lg font-bold text-slate-900">6 Departemen</p>
+                       </div>
+                   </div>
+                    <div class="bg-white p-6 rounded-2xl border-2 border-slate-200 flex items-center gap-4 transition-all duration-300 hover:border-yellow-400 hover:shadow-lg hover:-translate-y-1">
+                       <i data-lucide="shield-check" class="w-10 h-10 text-yellow-600"></i>
+                       <div>
+                           <p class="text-sm text-slate-500 font-semibold">Teknologi Utama</p>
+                           <p class="text-lg font-bold text-slate-900">VLAN, VPN, Routing</p>
+                       </div>
+                   </div>
              </div>
         </section>
 
+        <!-- Kontainer untuk Bagian-bagian Laporan -->
         <div class="space-y-12">
+            
             <section id="deskripsi">
                 <h2><i data-lucide="file-text" class="w-8 h-8 text-indigo-600"></i>Deskripsi Proyek</h2>
                 <div class="card">
@@ -129,6 +156,7 @@
                     </div>
                 </div>
             </section>
+            
             <section id="tujuan">
                 <h2><i data-lucide="target" class="w-8 h-8 text-indigo-600"></i>Tujuan Proyek</h2>
                 <div class="card">
@@ -137,6 +165,7 @@
                     </p>
                 </div>
             </section>
+            
             <section id="tim">
                 <h2><i data-lucide="users-2" class="w-8 h-8 text-indigo-600"></i>Tim & Tanggung Jawab</h2>
                 <div class="card">
@@ -145,7 +174,7 @@
                         <p class="text-sm text-slate-500 mt-2">Struktur Organisasi Tim Proyek</p>
                     </div>
                     <div class="overflow-x-auto rounded-lg border border-slate-200">
-                        <table class="min-w-full">
+                        <table>
                             <thead><tr><th>Jabatan</th><th>Deskripsi Tugas</th></tr></thead>
                             <tbody class="bg-white">
                                 <tr><td class="font-semibold whitespace-nowrap">Manajer Proyek</td><td class="whitespace-normal">Bertanggung jawab atas keseluruhan perencanaan, pengorganisasian, penganggaran, dan pelaksanaan proyek. Mengkoordinasikan tim dan menjadi titik kontak utama.</td></tr>
@@ -157,6 +186,7 @@
                     </div>
                 </div>
             </section>
+            
             <section id="metodologi">
                 <h2><i data-lucide="workflow" class="w-8 h-8 text-indigo-600"></i>Metodologi PBM</h2>
                 <div class="card space-y-8">
@@ -165,6 +195,7 @@
                     <div><h3 class="flex items-center gap-3 text-xl font-bold mb-4 text-slate-800"><span class="flex items-center justify-center w-8 h-8 bg-yellow-100 text-yellow-700 rounded-full font-bold">3</span> Tahap Pengelolaan (Manage)</h3><div class="space-y-4 ml-4 border-l-2 border-yellow-300 pl-8"><div><h4 class="font-semibold">Product Support:</h4><p class="text-slate-600">Menawarkan peralatan jaringan dengan produk dan fitur terbaru.</p></div><div><h4 class="font-semibold">Solution Support:</h4><p class="text-slate-600">Menyediakan jaringan yang baik dan mengelola pemecahan masalah dalam jaringan.</p></div><div><h4 class="font-semibold">Optimization:</h4><p class="text-slate-600">Melakukan pengamatan dalam pemeliharaan jaringan dan sistem, serta memberikan pelatihan kepada operator.</p></div><div><h4 class="font-semibold">Operation Management:</h4><p class="text-slate-600">Memastikan personel memahami teknologi, mendokumentasikan kinerja, dan mengelola monitoring, performa, serta keamanan jaringan.</p></div></div></div>
                 </div>
             </section>
+            
             <section id="tools">
                 <h2><i data-lucide="cpu" class="w-8 h-8 text-indigo-600"></i>Software & Perangkat</h2>
                 <div class="card grid md:grid-cols-2 gap-8">
@@ -172,6 +203,7 @@
                     <div><h3 class="text-xl font-semibold mb-4 text-slate-800">Perangkat Keras</h3><ul class="list-none grid grid-cols-2 gap-3 text-slate-600"><li class="flex items-center gap-3"><i data-lucide="server" class="w-4 h-4"></i>Router</li><li class="flex items-center gap-3"><i data-lucide="database" class="w-4 h-4"></i>Server</li><li class="flex items-center gap-3"><i data-lucide="switch-camera" class="w-4 h-4"></i>Switch</li><li class="flex items-center gap-3"><i data-lucide="modem-tower" class="w-4 h-4"></i>DSL MODEM</li><li class="flex items-center gap-3"><i data-lucide="monitor" class="w-4 h-4"></i>Komputer</li><li class="flex items-center gap-3"><i data-lucide="video" class="w-4 h-4"></i>Webcam</li><li class="flex items-center gap-3"><i data-lucide="siren" class="w-4 h-4"></i>Smoke Sensor</li><li class="flex items-center gap-3"><i data-lucide="smartphone" class="w-4 h-4"></i>SmartPhone</li><li class="flex items-center gap-3"><i data-lucide="laptop" class="w-4 h-4"></i>Laptop</li></ul></div>
                 </div>
             </section>
+            
             <section id="desain">
                 <h2><i data-lucide="network" class="w-8 h-8 text-indigo-600"></i>Desain Jaringan</h2>
                 <div class="card space-y-8 text-center">
@@ -180,35 +212,38 @@
                     <div class="bg-slate-50 p-4 rounded-xl border"><h3 class="font-semibold mb-3 text-slate-800">Implementasi di Packet Tracer</h3><img src="https://i.imgur.com/gGGYoOO.png" alt="Screenshot topologi jaringan yang dibangun di dalam software Cisco Packet Tracer." class="w-full h-auto rounded-lg shadow-md enlargeable-image"></div>
                 </div>
             </section>
+            
             <section id="ip-table">
                 <h2><i data-lucide="at-sign" class="w-8 h-8 text-indigo-600"></i>Tabel Pengalamatan IP</h2>
                 <div class="card"><div class="overflow-x-auto rounded-lg border border-slate-200"><table><thead><tr><th>Jenis</th><th>Nama Perangkat</th><th>Interface</th><th>IP Address</th></tr></thead><tbody class="bg-white"><tr><td>Server</td><td>www.pj.com</td><td>FastEthernet 0</td><td>10.0.128.2/24</td></tr><tr><td>Router</td><td>ISP</td><td>GigabitEthernet 0/0</td><td>10.0.64.1/24</td></tr><tr><td>PC-PT</td><td>Teleworker VPN</td><td>Fast Ethernet 0</td><td>10.0.64.2/24</td></tr><tr><td>Switch</td><td>Switch3 (WiFi)</td><td>Vlan 70</td><td>10.0.0.11/24</td></tr><tr><td>Switch</td><td>Switch5 (ManPer)</td><td>Vlan 10</td><td>10.0.0.2/24</td></tr><tr><td>Switch</td><td>Switch6 (Pemasaran)</td><td>Vlan 20</td><td>10.0.0.3/24</td></tr><tr><td>Host</td><td>PC-Dept_ManPer</td><td>FastEthernet 0</td><td>10.0.0.10/24</td></tr><tr><td>Host</td><td>PC-Dept_Pemasaran</td><td>FastEthernet 0</td><td>10.0.0.20/24</td></tr><tr><td>Host</td><td>PC-Dept_Keuangan</td><td>FastEthernet 0</td><td>10.0.0.30/24</td></tr><tr><td>Host</td><td>PC-Dept_Produksi</td><td>FastEthernet 0</td><td>10.0.0.40/24</td></tr><tr><td>Host</td><td>PC-Dept_Elektrika</td><td>FastEthernet 0</td><td>10.0.0.50/24</td></tr><tr><td>Host</td><td>PC_Dept_TI</td><td>FastEthernet 0</td><td>10.0.0.60/24</td></tr><tr><td>Host</td><td>Server Apps</td><td>FastEthernet 0</td><td>10.0.0.70/24</td></tr><tr><td>Host</td><td>Server Storage</td><td>FastEthernet 0</td><td>10.0.0.80/24</td></tr><tr><td>Host</td><td>Renderfarm</td><td>FastEthernet 0</td><td>10.0.0.90/24</td></tr></tbody></table></div></div>
             </section>
+            
             <section id="konfigurasi">
                 <h2><i data-lucide="terminal" class="w-8 h-8 text-indigo-600"></i>Konfigurasi Dasar</h2>
                 <div class="card grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    <div class="code-block"><div class="code-header"><span>a. ISP Router</span><button class="copy-btn flex items-center gap-1.5 hover:text-white"><i data-lucide="copy" class="w-3.5 h-3.5"></i><span class="btn-text">Salin</span></button></div><code>Router(config)#interface GigabitEthernet0/0
+                    <div class="code-block"><div class="code-header"><span>a. ISP Router</span><button type="button" class="copy-btn flex items-center gap-1.5 hover:text-white" aria-label="Salin kode ISP Router"><i data-lucide="copy" class="w-3.5 h-3.5"></i><span class="btn-text">Salin</span></button></div><code>Router(config)#interface GigabitEthernet0/0
 Router(config-if)#ip address 10.0.64.1 255.255.255.0
 Router(config-if)#interface GigabitEthernet0/1
 Router(config-if)#ip address 10.0.0.1 255.255.255.0
 ...
 </code></div>
-                    <div class="code-block"><div class="code-header"><span>b. Edge Core Switch (VLAN & Trunk)</span><button class="copy-btn flex items-center gap-1.5 hover:text-white"><i data-lucide="copy" class="w-3.5 h-3.5"></i><span class="btn-text">Salin</span></button></div><code>Switch(config)#vlan 10
+                    <div class="code-block"><div class="code-header"><span>b. Edge Core Switch (VLAN & Trunk)</span><button type="button" class="copy-btn flex items-center gap-1.5 hover:text-white" aria-label="Salin kode Edge Core Switch"><i data-lucide="copy" class="w-3.5 h-3.5"></i><span class="btn-text">Salin</span></button></div><code>Switch(config)#vlan 10
 Switch(config-vlan)# name Dept_ManPer
 ... (vlan 20, 30, ... 90) ...
 Switch(config)#interface GigabitEthernet1/0/2
 Switch(config-if)#switchport mode trunk
 ...
 </code></div>
-                    <div class="code-block"><div class="code-header"><span>c. Distribution Layer Switch (Trunk)</span><button class="copy-btn flex items-center gap-1.5 hover:text-white"><i data-lucide="copy" class="w-3.5 h-3.5"></i><span class="btn-text">Salin</span></button></div><code>Switch(config)#interface range Gi1/0/1-3
+                    <div class="code-block"><div class="code-header"><span>c. Distribution Layer Switch (Trunk)</span><button type="button" class="copy-btn flex items-center gap-1.5 hover:text-white" aria-label="Salin kode Distribution Layer Switch"><i data-lucide="copy" class="w-3.5 h-3.5"></i><span class="btn-text">Salin</span></button></div><code>Switch(config)#interface range Gi1/0/1-3
 Switch(config-if-range)#switchport mode trunk
 </code></div>
-                    <div class="code-block"><div class="code-header"><span>d. Access Switch (VLAN Interface)</span><button class="copy-btn flex items-center gap-1.5 hover:text-white"><i data-lucide="copy" class="w-3.5 h-3.5"></i><span class="btn-text">Salin</span></button></div><code>Switch(config)#interface vlan 10
+                    <div class="code-block"><div class="code-header"><span>d. Access Switch (VLAN Interface)</span><button type="button" class="copy-btn flex items-center gap-1.5 hover:text-white" aria-label="Salin kode Access Switch"><i data-lucide="copy" class="w-3.5 h-3.5"></i><span class="btn-text">Salin</span></button></div><code>Switch(config)#interface vlan 10
 Switch(config-if)#ip address 10.0.0.2 255.255.255.0
 ... (IP untuk vlan 20, 30, dst.) ...
 </code></div>
                 </div>
             </section>
+            
             <section id="hasil">
                 <h2><i data-lucide="check-check" class="w-8 h-8 text-indigo-600"></i>Hasil Pengujian</h2>
                 <div class="card space-y-8">
@@ -221,7 +256,9 @@ Switch(config-if)#ip address 10.0.0.2 255.255.255.0
             </section>
         </div>
         
-        <!-- Footer -->
+        <!-- =================================================================
+        Footer
+        ================================================================== -->
         <footer class="text-center mt-16 py-8 border-t border-slate-200 text-slate-500">
             <p class="font-semibold">Dokumen Proyek Asli oleh: Gatot Sasangka (19.11.2879) - 2022</p>
             <p class="text-sm">Divisualisasikan sebagai Laporan Web Teknis Interaktif.</p>
@@ -229,63 +266,63 @@ Switch(config-if)#ip address 10.0.0.2 255.255.255.0
 
     </main>
     
-    <!-- Image Modal -->
-    <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-80 backdrop-blur-sm z-[100] hidden items-center justify-center p-4 transition-opacity duration-300">
+    <!-- =================================================================
+    Komponen UI Global (Modal, Tombol Kembali ke Atas)
+    ================================================================== -->
+    
+    <!-- Modal Gambar -->
+    <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-80 backdrop-blur-sm z-[100] hidden items-center justify-center p-4">
         <div class="relative max-w-4xl max-h-full">
             <img id="modalImage" src="" alt="Tampilan gambar yang diperbesar" class="w-auto h-auto max-w-full max-h-[90vh] rounded-lg shadow-2xl">
-            <button id="closeModal" class="absolute -top-3 -right-3 bg-white text-slate-800 rounded-full p-2 hover:bg-slate-200 transition-colors z-10">
+            <button type="button" id="closeModal" aria-label="Tutup modal gambar" class="absolute -top-3 -right-3 bg-white text-slate-800 rounded-full p-2 hover:bg-slate-200 transition-colors z-10">
                 <i data-lucide="x" class="w-6 h-6"></i>
             </button>
         </div>
     </div>
 
-    <!-- Back to Top Button -->
-    <button id="toTopBtn" class="fixed bottom-6 right-6 bg-indigo-600 text-white p-3 rounded-full shadow-lg hover:bg-indigo-700 transition-all duration-300 transform scale-0 z-50">
+    <!-- Tombol Kembali ke Atas -->
+    <button type="button" id="toTopBtn" aria-label="Kembali ke atas" class="fixed bottom-6 right-6 bg-indigo-600 text-white p-3 rounded-full shadow-lg hover:bg-indigo-700 transition-all duration-300 transform scale-0 z-50">
         <i data-lucide="arrow-up" class="w-6 h-6"></i>
     </button>
     
+    <!-- =================================================================
+    JavaScript Khusus Halaman
+    ================================================================== -->
     <script>
-        lucide.createIcons();
+        document.addEventListener('DOMContentLoaded', () => {
+            // Inisialisasi semua komponen interaktif setelah DOM siap
+            setupCopyToClipboard();
+            setupImageModal();
+            setupBackToTopButton();
+            setupScrollSpy();
+            setupFadeInAnimations();
 
-        // --- Robust Copy to Clipboard for Code Blocks ---
-        document.querySelectorAll('.copy-btn').forEach(button => {
-            button.addEventListener('click', () => {
-                const codeBlock = button.closest('.code-block');
-                if (!codeBlock) return;
-                const code = codeBlock.querySelector('code');
-                if (!code) return;
-                const textToCopy = code.innerText;
+            // Render awal semua ikon Lucide
+            lucide.createIcons();
+        });
 
-                const copyToClipboard = (text) => {
-                    if (navigator.clipboard && window.isSecureContext) {
-                        return navigator.clipboard.writeText(text);
-                    } else {
-                        // Fallback using execCommand
-                        const textArea = document.createElement("textarea");
-                        textArea.value = text;
-                        textArea.style.position = "absolute";
-                        textArea.style.left = "-9999px";
-                        document.body.appendChild(textArea);
-                        textArea.focus();
-                        textArea.select();
-                        return new Promise((res, rej) => {
-                            try {
-                                document.execCommand('copy') ? res() : rej(new Error('Copy command failed'));
-                            } catch (error) {
-                                rej(error);
-                            } finally {
-                                document.body.removeChild(textArea);
-                            }
-                        });
-                    }
-                };
+        /**
+         * Mengatur fungsionalitas salin-ke-clipboard untuk semua blok kode.
+         * Menggunakan event delegation untuk efisiensi.
+         */
+        function setupCopyToClipboard() {
+            document.body.addEventListener('click', (event) => {
+                const copyButton = event.target.closest('.copy-btn');
+                if (!copyButton) return;
 
-                copyToClipboard(textToCopy).then(() => {
-                    const btnText = button.querySelector('.btn-text');
-                    const icon = button.querySelector('i');
+                const codeBlock = copyButton.closest('.code-block');
+                const codeElement = codeBlock?.querySelector('code');
+                const textToCopy = codeElement?.innerText;
+                
+                if (!textToCopy) return;
+
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    const btnText = copyButton.querySelector('.btn-text');
+                    const icon = copyButton.querySelector('i');
                     btnText.textContent = 'Tersalin!';
                     icon.setAttribute('data-lucide', 'check');
-                    lucide.createIcons();
+                    lucide.createIcons(); // Render ulang ikon
+                    
                     setTimeout(() => {
                         btnText.textContent = 'Salin';
                         icon.setAttribute('data-lucide', 'copy');
@@ -293,111 +330,122 @@ Switch(config-if)#ip address 10.0.0.2 255.255.255.0
                     }, 2000);
                 }).catch(err => {
                     console.error('Gagal menyalin teks:', err);
-                    const btnText = button.querySelector('.btn-text');
-                    if (btnText) btnText.textContent = 'Gagal!';
-                     setTimeout(() => {
-                        if (btnText) btnText.textContent = 'Salin';
-                    }, 2000);
+                    const btnText = copyButton.querySelector('.btn-text');
+                    btnText.textContent = 'Gagal!';
+                    setTimeout(() => { btnText.textContent = 'Salin'; }, 2000);
                 });
             });
-        });
+        }
 
-        // --- Back to Top Button ---
-        const toTopBtn = document.getElementById('toTopBtn');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                toTopBtn.classList.remove('scale-0');
-            } else {
-                toTopBtn.classList.add('scale-0');
-            }
-        });
-        toTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+        /**
+         * Menginisialisasi modal untuk melihat gambar yang dapat diperbesar.
+         */
+        function setupImageModal() {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            const closeModalBtn = document.getElementById('closeModal');
 
-        // --- Image Modal ---
-        const modal = document.getElementById('imageModal');
-        const modalImg = document.getElementById('modalImage');
-        const closeModalBtn = document.getElementById('closeModal');
+            if (!modal || !modalImg || !closeModalBtn) return;
 
-        document.querySelectorAll('.enlargeable-image').forEach(img => {
-            img.addEventListener('click', () => {
+            const openModal = (imgElement) => {
                 modal.classList.remove('hidden');
-                modal.classList.add('flex');
-                modalImg.src = img.src;
-                modalImg.alt = img.alt;
-            });
-        });
+                modalImg.src = imgElement.src;
+                modalImg.alt = imgElement.alt;
+            };
 
-        const closeModal = () => {
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-            modalImg.src = ''; 
-        };
-
-        closeModalBtn.addEventListener('click', closeModal);
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                closeModal();
-            }
-        });
-        document.addEventListener('keydown', (e) => {
-            if (e.key === "Escape" && !modal.classList.contains('hidden')) {
-                closeModal();
-            }
-        });
-
-        // --- Active Nav on Scroll ---
-        const sections = document.querySelectorAll('main section[id]');
-        const navLinks = document.querySelectorAll('nav a');
-
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.4 
-        };
-
-        const sectionObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const id = entry.target.getAttribute('id');
-                    navLinks.forEach(link => {
-                        link.classList.remove('nav-active');
-                        if (link.getAttribute('href') === `#${id}`) {
-                            link.classList.add('nav-active');
-                        }
-                    });
+            const closeModal = () => {
+                modal.classList.add('hidden');
+            };
+            
+            document.body.addEventListener('click', (event) => {
+                if (event.target.closest('.enlargeable-image')) {
+                    openModal(event.target);
                 }
             });
-        }, observerOptions);
 
-        sections.forEach(section => {
-            sectionObserver.observe(section);
-        });
-
-        // --- Fade In Sections on Scroll ---
-        const fadeElements = document.querySelectorAll('main > div > section');
-        fadeElements.forEach(el => el.classList.add('section-fade-in'));
-
-        const fadeInObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
+            closeModalBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === "Escape" && !modal.classList.contains('hidden')) {
+                    closeModal();
                 }
             });
-        }, { threshold: 0.1 });
-
-        fadeElements.forEach(section => {
-            fadeInObserver.observe(section);
-        });
+        }
         
-        // Re-initialize icons for modal and back-to-top buttons
-        lucide.createIcons();
+        /**
+         * Mengelola visibilitas dan fungsionalitas tombol "Kembali ke Atas".
+         */
+        function setupBackToTopButton() {
+            const toTopBtn = document.getElementById('toTopBtn');
+            if (!toTopBtn) return;
+
+            window.addEventListener('scroll', () => {
+                toTopBtn.classList.toggle('scale-0', window.scrollY <= 300);
+            }, { passive: true });
+
+            toTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+
+        /**
+         * Menyorot tautan navigasi aktif berdasarkan bagian yang terlihat saat ini.
+         * Menggunakan IntersectionObserver untuk performa.
+         */
+        function setupScrollSpy() {
+            const sections = document.querySelectorAll('main section[id]');
+            const navLinks = document.querySelectorAll('#nav-links a');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '-50% 0px -50% 0px', // Memicu di tengah layar
+                threshold: 0
+            };
+
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        navLinks.forEach(link => {
+                            link.classList.remove('nav-active');
+                            link.removeAttribute('aria-current');
+                            if (link.getAttribute('href') === `#${id}`) {
+                                link.classList.add('nav-active');
+                                link.setAttribute('aria-current', 'page');
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                sectionObserver.observe(section);
+            });
+        }
+
+        /**
+         * Menambahkan animasi fade-in ke bagian-bagian saat di-scroll ke dalam tampilan.
+         * Menggunakan IntersectionObserver untuk memicu animasi sekali.
+         */
+        function setupFadeInAnimations() {
+            const fadeElements = document.querySelectorAll('main > div > section');
+            fadeElements.forEach(el => el.classList.add('section-fade-in'));
+
+            const fadeInObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            fadeElements.forEach(section => {
+                fadeInObserver.observe(section);
+            });
+        }
     </script>
 </body>
 </html>
-
-
-
-
